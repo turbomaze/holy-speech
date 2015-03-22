@@ -1,0 +1,60 @@
+/* GENERAL START */
+header h1 { margin-bottom: 0px; }
+.column { overflow: visible; }
+input { width: 100%; }
+input[type="text"] { /* stolen from Foundation 4 (Zurb) */
+	height: 2rem;
+	padding: 0.4444rem;
+	margin: 0 0 0.8889rem 0;
+	font-size: 0.7778rem;
+	color: black;
+	background-color: white;
+	border: 1px solid #CCC;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+	-webkit-transition: all 0.25s linear;
+	-moz-transition: all 0.25s linear;
+	transition: all 0.25s linear;
+}
+input[type="text"]:focus {
+	background: #FAFAFA;
+	outline: none;
+	border-color: #999;
+	box-shadow: 0 0 5px #999;
+}
+input[type="text"]:disabled {
+	background: #EFEFEF;
+	outline: none;
+	border-color: #555;
+	box-shadow: none;
+}
+/* GENERAL END */
+
+/* TOOLS START */
+.button { /* stolen from https://daneden.me/toast/ */
+	line-height: 2;
+	padding: 4px 15px;
+	padding: 0.2rem;
+	margin-bottom: 14px;
+	margin-right: -0.3rem;
+	text-align: center;
+	font-size: 0.75rem;
+	color: #FFF;
+	background-color: #50AD5F;
+	border: 1px solid rgba(0,0,0,.1);
+	border-radius: 0.24rem;
+	-webkit-border-radius: 0.24rem;
+	text-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+.button:hover {
+	cursor: pointer;
+	box-shadow: 1px 1px 7px #888888;
+	overflow: visible;
+}
+.button:active {
+	cursor: pointer;
+	background-color: #4AA158;
+	border: 1px solid rgba(0,0,0,0.2);
+}
+/* TOOLS END */
