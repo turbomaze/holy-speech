@@ -54,40 +54,52 @@ var HolySpeech = (function() {
         $s('#swiss-btn').addEventListener('click', function() {
             round += 1;
 
-            //remove the words paragraph by paragraph
-            var prbOfBlank = 1 - sparsityFunc(round);
-            var speechWithHoles = [];
-            for (var ai = 0; ai < speech.length; ai++) {
-                speechWithHoles.push([
-                    speech[ai][0],
-                    bless(speech[ai][1], prbOfBlank)
-                ]);
-            }
-
             //render it
-            renderSpeech(speechWithHoles);
+            renderSpeech(punchHolesInSpeech(speech));
+
+            return false;
+        });
+
+        $s('#cheese-btn').addEventListener('click', function() {
+            //render it
+            renderSpeech(punchHolesInSpeech(speech));
 
             return false;
         });
     }
 
+    function punchHolesInSpeech(spch) {
+        //remove the words paragraph by paragraph
+        var prbOfBlank = 1 - sparsityFunc(round);
+        var speechWithHoles = [];
+        for (var ai = 0; ai < spch.length; ai++) {
+            speechWithHoles.push([
+                spch[ai][0],
+                bless(spch[ai][1], prbOfBlank)
+            ]);
+        }
+        return speechWithHoles;
+    }
+
     function bless(pgr, holiness) {
+        function whiteOutAndUnderline(word) {
+            return '<span style='+
+                        '"border-bottom: 2px solid black; color: white;">'+
+                word +
+            '</span>';
+        }
+
         var words = pgr.split(' ');
         var newWords = [];
         for (var ai = 0; ai < words.length; ai++) {
-            if (Math.random() < holiness) { //remove this word
-                var word = words[ai];
-                if (word.length === word.replace(/[.!?,:]/g, '').length) {
-                    //if it doesn't have any exempt characters
-                    newWords.push(
-                        replChar+replChar+replChar+replChar+replChar
-                    );
-                } else {
-                    //if some chars are exempt, replace those that aren't
-                    newWords.push(words[ai].replace(/[^.!?,:]/g, replChar));
-                }
+            if (words[ai] === '*') {
+                newWords.push('<span style="color: red;"><b>*</b></span>');
             } else {
-                newWords.push(words[ai]);
+                if (Math.random() < holiness) { //remove this word
+                    newWords.push(whiteOutAndUnderline(words[ai]));
+                } else {
+                    newWords.push(words[ai]);
+                }
             }
         }
         return newWords.join(' ');
@@ -122,15 +134,6 @@ var HolySpeech = (function() {
     function $s(id) { //for convenience
         if (id.charAt(0) !== '#') return false;
         return document.getElementById(id.substring(1));
-    }
-
-    function getRandInt(low, high) { //output is in [low, high)
-        return Math.floor(low + Math.random()*(high-low));
-    }
-
-    function round(n, places) {
-        var mult = Math.pow(10, places);
-        return Math.round(mult*n)/mult;
     }
 
     return {
