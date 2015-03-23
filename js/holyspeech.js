@@ -15,11 +15,23 @@ var HolySpeech = (function() {
 
     /*********************
      * working variables */
+    var speech = [];
+    var speechJSON = '';
+    var round = 0;
 
     /******************
      * work functions */
     function initHolySpeech() {
-        console.log('Holy Speech');
+        $s('#add-pg-btn').addEventListener('click', function() {
+            var descr = $s('#phrase-descr').value;
+            var pgraph = $s('#paragraph').value;
+            speech.push([descr, pgraph]);
+            speechJSON = JSON.stringify(speech);
+            $s('#json-output').value = speechJSON;
+
+            $s('#phrase-descr').value = '';
+            $s('#paragraph').value = '';
+        });
     }
 
     /***********

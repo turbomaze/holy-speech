@@ -18,6 +18,17 @@
                 </header>
 
                 <hr class="unit span-grid">
+
+                <div class="unit span-grid">
+                    1. Using the "Add to speech" button, add the paragraphs of your speech one by one. Each paragraph must be accompanied by a brief ~10 word description.<br>
+                    2. Save the text in the row below somewhere so you can use your speech again in the future.<br>
+                    3. Click the "Load speech" button and read through your speech.<br>
+                    4. When you're done, press the "Remove some words" button to, you guessed it, replace some of the words in your speech with blanks.<br>
+                    5. Try and fill in the blanks as you read your speech out loud. Repat 4-5 as many times as it takes.
+                </div><br><br>
+
+                <hr class="unit span-grid">
+
                 <div class="unit three-of-five">
                     <input placeholder="Paragraph" type="text" id="paragraph">
                 </div>
@@ -27,11 +38,14 @@
                 <div class="button unit one-of-five" id="add-pg-btn">
                     Add to speech
                 </div>
-                <div class="unit span-grid">
-                    <input placeholder="Ctrl+a and copy this somewhere to save!" type="text" id="json-output">
+                <div class="unit four-of-five">
+                    <input placeholder="Ctrl+a and copy this somewhere to save! Or enter saved text here to load." type="text" id="json-output">
                 </div>
-                <div class="button unit span-grid" id="begin-btn">
-                    Start next round
+                <div class="button unit one-of-five" id="load-speech-btn">
+                    Load speech
+                </div>
+                <div class="button unit span-grid" id="swiss-btn">
+                    Remove some words
                 </div>
                 <br><br>
 
@@ -55,8 +69,8 @@
                     </div>
                 </div>
 
-                <div class="button unit span-grid" id="begin-btn">
-                    Start next round
+                <div class="unit span-grid" style="text-align: center;">
+                    <a href="#">Back to top</a>
                 </div>
             </div>
         </div>
