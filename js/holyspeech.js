@@ -72,22 +72,24 @@ var HolySpeech = (function() {
     }
 
     function bless(pgr, holiness) {
+        function whiteOutAndUnderline(word) {
+            return '<span style='+
+                        '"border-bottom: 2px solid black; color: white;">'+
+                word +
+            '</span>';
+        }
+
         var words = pgr.split(' ');
         var newWords = [];
         for (var ai = 0; ai < words.length; ai++) {
-            if (Math.random() < holiness) { //remove this word
-                var word = words[ai];
-                if (word.length === word.replace(/[.!?,:]/g, '').length) {
-                    //if it doesn't have any exempt characters
-                    newWords.push(
-                        replChar+replChar+replChar+replChar+replChar
-                    );
-                } else {
-                    //if some chars are exempt, replace those that aren't
-                    newWords.push(words[ai].replace(/[^.!?,:]/g, replChar));
-                }
+            if (words[ai] === '*') {
+                newWords.push('<span style="color: red;"><b>*</b></span>');
             } else {
-                newWords.push(words[ai]);
+                if (Math.random() < holiness) { //remove this word
+                    newWords.push(whiteOutAndUnderline(words[ai]));
+                } else {
+                    newWords.push(words[ai]);
+                }
             }
         }
         return newWords.join(' ');
@@ -122,15 +124,6 @@ var HolySpeech = (function() {
     function $s(id) { //for convenience
         if (id.charAt(0) !== '#') return false;
         return document.getElementById(id.substring(1));
-    }
-
-    function getRandInt(low, high) { //output is in [low, high)
-        return Math.floor(low + Math.random()*(high-low));
-    }
-
-    function round(n, places) {
-        var mult = Math.pow(10, places);
-        return Math.round(mult*n)/mult;
     }
 
     return {
