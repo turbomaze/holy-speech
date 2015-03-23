@@ -1,6 +1,9 @@
 /* GENERAL START */
 header h1 { margin-bottom: 0px; }
-.column { overflow: visible; }
+.column-l, .column-r { overflow: visible; }
+.column-l {
+	text-align: right;
+}
 input { width: 100%; }
 input[type="text"] { /* stolen from Foundation 4 (Zurb) */
 	height: 2rem;
@@ -28,6 +31,17 @@ input[type="text"]:disabled {
 	outline: none;
 	border-color: #555;
 	box-shadow: none;
+}
+footer {
+	background: #50AD5F;
+	text-align: center;
+	margin-top: 30px;
+	padding-top: 45.1016px;
+	padding-bottom: 225.1022px;
+	width: 100%;
+}
+footer a {
+	color: white;
 }
 /* GENERAL END */
 
